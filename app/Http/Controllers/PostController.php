@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts', ['posts' => $posts]);
+        return view('home', ['posts' => $posts]);
     }
 
     public function detail(Request $request, $postId){
@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        return view('post/create');
     }
 
     /**
@@ -41,7 +41,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post([
+            'user_id' => auth()->id(),
+            'name' => auth()->user()->name,
+            'contents' => $request->contents,
+        ]);
+        $post->save();
+        return redirect('home')->with('success', 'Post uploaded Successfully');
     }
 
     /**
