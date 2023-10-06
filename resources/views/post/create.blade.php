@@ -8,10 +8,14 @@
             <p class="alert alert-danger">{{ $err }}</p>
             @endforeach
             @endif
-            <form method="POST" action="{{ url('/postStore') }}">
+                <div class="mb-3">
+                    <label>楽曲を選択してください<span class="text-danger">*</span></label>
+                    <form method="POST" action="{{ url('/postStore') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <input type="file" id="file" name="file" class="form-control" />
+                </div>
                 @csrf
                 <div class="mb-3">
-                    <label>Contents<span class="text-danger">*</span></label>
                     <textarea type="text" class="form-control" name="contents" autocomplete="contents" autofocus
                         required>{{old('contents')}}</textarea>
                 </div>

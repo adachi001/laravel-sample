@@ -25,6 +25,9 @@
                             <td>{{$post->name}}</td>
                             <td>{{$post->contents}}</td>
                             <td>
+                            <div class="mb-3">
+                        <a href="/storage/01_足立涼輔.pdf">アップロードファイル</a>
+                        </div>
                                 <a class="btn btn-sm btn-warning" href="{{url('post/'.$post->id)}}">{{ __('Details')
                                     }}</a>
                             </td>

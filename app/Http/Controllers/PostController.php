@@ -41,6 +41,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $file_name = $request->file('file')->getClientOriginalName();
+        $request->file('file')->storeAs('public',$file_name);
         $post = new Post([
             'user_id' => auth()->id(),
             'name' => auth()->user()->name,
@@ -48,6 +50,7 @@ class PostController extends Controller
         ]);
         $post->save();
         return redirect('home')->with('success', 'Post uploaded Successfully');
+        
     }
 
     /**
